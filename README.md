@@ -14,8 +14,8 @@ This is the frontend of a Warehouse Management System, built with **Vue 3**, **T
 1. Clone the project:
 
 ```bash
-git clone <PROJECT_URL>
-cd mswebclient
+git clone https://github.com/aurelienbono/mswebclient-debytes-io
+cd mswebclient-debytes-io
 ````
 
 2. Install dependencies:
