@@ -63,7 +63,7 @@ export default defineComponent({
 
     const loadLocations = async () => {
       const result = await apiService.get('inventory/locations/')
-      if (result.success) locations.value = result.data
+      if (result.success) locations.value = result.data.data
       else alert(`Erreur: ${JSON.stringify(result.error)}`)
     }
 

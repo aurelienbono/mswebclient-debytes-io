@@ -125,7 +125,7 @@ export default defineComponent({
 
     const loadStockMoves = async () => {
       const result = await apiService.get('inventory/stock-moves/')
-      if (result.success) stockMoves.value = result.data
+      if (result.success) stockMoves.value = result.data.data
     }
 
     onMounted(() => {

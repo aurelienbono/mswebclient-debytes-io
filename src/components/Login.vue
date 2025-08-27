@@ -27,24 +27,32 @@ export default defineComponent({
     const router = useRouter()
 
     const handleLogin = async () => {
-      const payload = {
-        email: email.value,
-        password: password.value
-      }
-
-      const result = await apiService.post('customer/auth/login/', payload)
-
-      if (result.success) {
-        alert('Connexion réussie !')
-        if (result.data?.access) {
-          localStorage.setItem('token', result.data.access)
-        }
-        router.push('/dashboard')
-      } else {
-        console.error(result.error)
-        alert(`Erreur: ${JSON.stringify(result.error)}`)
-      }
+  try {
+    const payload = {
+      email: email.value,
+      password: password.value
     }
+
+    const result = await apiService.post('customer/auth/login/', payload)
+
+    if (result.data && result.data.Tokens && result.data.Tokens.access) {
+      const token = result.data.Tokens.access   
+      localStorage.setItem('access_token', token)  
+      apiService.setToken(token) 
+
+
+      alert('Connexion réussie !')
+      alert(token)
+      router.push('/dashboard')
+    } else {
+      alert('Erreur : token non reçu')
+      console.error(result)
+    }
+  } catch (error) {
+    console.error(error)
+    alert('Erreur lors de la connexion')
+  }
+}
 
     return { email, password, handleLogin }
   }

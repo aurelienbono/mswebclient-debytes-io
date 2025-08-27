@@ -141,10 +141,9 @@ export default defineComponent({
       ActivityExceptionDecoration: ''
     })
 
-    // Charger les produits
     const loadProducts = async () => {
       const result = await apiService.get('inventory/products/')
-      if(result.success) products.value = result.data
+      if(result.success) products.value = result.data.data
       else alert(`Erreur: ${JSON.stringify(result.error)}`)
     }
 
